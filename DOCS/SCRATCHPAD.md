@@ -4,3 +4,4 @@
 - [x] Create documentation structure
 - [x] Enhance README with visuals and website link
 - [x] Improve text readability against light hero background
+- [x] Add extensive micro-hover interactions throughout UI
