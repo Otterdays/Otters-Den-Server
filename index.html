@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otterdays | Premium Minecraft Server</title>
+    <meta name="description" content="Discover Otterdays, a modern, highly optimized Minecraft Java Edition server powered by Fabric. Join our vibrant community today!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-text">Otterdays</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#join" class="btn-nav">Play Now</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <img src="assets/minecraft_bg.png" alt="Breathtaking Minecraft terrain with ray tracing shaders">
+            <div class="overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="badge-wrap">
+                <div class="badge">
+                    <span class="pulse-dot"></span> Java Edition 26.1
+                </div>
+            </div>
+            <h1 class="hero-title">Beyond <span class="highlight">Vanilla</span></h1>
+            <p class="hero-subtitle">Step into a beautifully crafted, high-performance survival experience governed by Ryan & Composer 2.</p>
+            
+            <div class="hero-cta">
+                <a href="#join" class="btn glow-btn">
+                    <span>Join Server</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#about" class="btn outline-btn">Explore Features</a>
+            </div>
+        </div>
+
+        <div class="scroll-prompt">
+            <p>Scroll down</p>
+            <div class="mouse-icon"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container auto-grid">
+            <div class="about-text glass-card fade-in">
+                <h2>The Otterdays Vision</h2>
+                <p>We believe Minecraft should be fast, stable, and community-driven. Built on a modernized Fabric stack, Otterdays offers seamless integration between our web control dashboard and the living, breathing game world.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>99%</h3>
+                        <p>Uptime</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>20 TPS</h3>
+                        <p>Performance</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100+</h3>
+                        <p>Custom Mods</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Filler cards for aesthetics -->
+            <div class="aesthetic-grid fade-in delay-1">
+                <div class="block-card b-diamond"></div>
+                <div class="block-card b-emerald"></div>
+                <div class="block-card b-gold"></div>
+                <div class="block-card b-obsidian"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container text-center fade-in">
+            <h2>Why Play Here?</h2>
+            <p class="section-desc">A perfect balance of vanilla mechanics and server-side enhancements.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card glass-card hover-lift">
+                    <div class="feature-icon emerald-glow">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3>Fabric Optimized</h3>
+                    <p>Running on the latest Fabric server engine with maximum efficiency plugins for an uncompromising 20 TPS standard.</p>
+                </div>
+                
+                <div class="feature-card glass-card hover-lift delay-1">
+                    <div class="feature-icon diamond-glow">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Secure & Fair</h3>
+                    <p>A whitelisted community where griefing is reverted automatically, and operations are transparently managed via the helper UI.</p>
+                </div>
+                
+                <div class="feature-card glass-card hover-lift delay-2">
+                    <div class="feature-icon amethyst-glow">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <h3>Global Quality</h3>
+                    <p>Experience ultra-low latency, custom bot integrations, and comprehensive dashboard reporting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="join-section">
+        <div class="container join-container glass-card text-center fade-in">
+            <h2>Ready to Dig In?</h2>
+            <p>Copy the IP below and paste it in your Minecraft Multiplayer menu.</p>
+            
+            <div class="ip-copy-wrapper">
+                <input type="text" id="server-ip" class="ip-input" value="play.otterdays.net" readonly>
+                <button class="copy-btn" id="copy-btn" aria-label="Copy IP address">
+                    Copy IP
+                </button>
+            </div>
+            
+            <p class="join-requirements">Requires Minecraft Java Edition &bullet; Whitelist enforced</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">Otterdays</div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Otterdays Server | Ryan & Composer 2</p>
+                <div class="social-links">
+                    <a href="#">Discord</a>
+                    <a href="#">Wiki</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Sticky Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Copy IP logic
+        const copyBtn = document.getElementById('copy-btn');
+        const ipInput = document.getElementById('server-ip');
+        
+        copyBtn.addEventListener('click', () => {
+            ipInput.select();
+            ipInput.setSelectionRange(0, 99999); // For mobile devices
+            navigator.clipboard.writeText(ipInput.value).then(() => {
+                const originalText = copyBtn.innerText;
+                copyBtn.innerText = 'Copied!';
+                copyBtn.classList.add('success');
+                setTimeout(() => {
+                    copyBtn.innerText = originalText;
+                    copyBtn.classList.remove('success');
+                }, 2000);
+            });
+        });
+
+        // Simple Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
