@@ -2,4 +2,4 @@
 # Project Summary
 Project: Otter's Den Server
 Description: Minecraft server website and documentation.
-Status: Initialized and Pushed
+Status: README Enhanced & Website Linked
