@@ -3,3 +3,4 @@
 - [x] Initialize git and push to GitHub
 - [x] Create documentation structure
 - [x] Enhance README with visuals and website link
+- [x] Improve text readability against light hero background
