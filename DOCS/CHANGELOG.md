@@ -1,5 +1,9 @@
 <!-- PRESERVATION RULE: Never delete or replace content. Append or annotate only. -->
 # CHANGELOG
+
+## [Unreleased]
+- Landing page: light/dark theme (persisted), mobile nav drawer with backdrop, back-to-top, scroll-spy nav highlights, skip link, OG/Twitter meta for GitHub Pages, reduced-motion handling, hero gradient fallback when background image is missing, copy-IP clipboard fallback.
+
 ## [0.1.0] - 2026-03-26
 - Initial project setup
 - Added documentation structure
