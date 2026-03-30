@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otterdays | Premium Minecraft Server</title>
-    <meta name="description" content="Discover Otterdays, a modern, highly optimized Minecraft Java Edition server powered by Fabric. Join our vibrant community today!">
+    <title>Otterdays — Fabric survival, whitelist-only</title>
+    <meta name="description" content="Otterdays is a small Java Edition survival server on Fabric: whitelist, helper dashboard, and a bias toward steady TPS over mod soup.">
     <meta name="theme-color" content="#12141a">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Otterdays | Premium Minecraft Server">
-    <meta property="og:description" content="Fabric-powered Java Edition survival. Whitelist community, web dashboard, 20 TPS focus.">
+    <meta property="og:title" content="Otterdays — Fabric survival">
+    <meta property="og:description" content="Whitelist Java server. Fabric stack, local helper UI, survival first.">
     <meta property="og:url" content="https://otterdays.github.io/Otters-Den-Server/">
     <meta property="og:image" content="https://otterdays.github.io/Otters-Den-Server/assets/otter_den_banner.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -16,7 +16,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -43,6 +43,7 @@
                 <a href="#home" data-nav-anchor>Home</a>
                 <a href="#about" data-nav-anchor>About</a>
                 <a href="#features" data-nav-anchor>Features</a>
+                <a href="#mods" data-nav-anchor>Mods</a>
                 <a href="#join" class="btn-nav" data-nav-anchor>Play Now</a>
             </div>
             <div class="nav-actions">
@@ -82,46 +83,47 @@
         <div class="hero-content">
             <div class="badge-wrap">
                 <div class="badge">
-                    <span class="pulse-dot"></span> Java Edition 26.1
+                    <span class="pulse-dot"></span> Java 26.1 · Fabric
                 </div>
             </div>
-            <h1 class="hero-title">Beyond <span class="highlight">Vanilla</span></h1>
-            <p class="hero-subtitle">Step into a beautifully crafted, high-performance survival experience governed by Ryan & Composer 2.</p>
+            <h1 class="hero-title">Survival with <span class="highlight">teeth</span></h1>
+            <p class="hero-subtitle">Whitelist-only den: vanilla-first loops, a curated mod set, and ops who actually restart the thing when it sulks. Run by Ryan; tooling co-piloted with Composer 2.</p>
             
             <div class="hero-cta">
                 <a href="#join" class="btn glow-btn">
-                    <span>Join Server</span>
+                    <span>Grab the IP</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#about" class="btn outline-btn">Explore Features</a>
+                <a href="#about" class="btn outline-btn">What you get</a>
             </div>
         </div>
 
         <div class="scroll-prompt">
-            <p>Scroll down</p>
+            <p>Keep going</p>
             <div class="mouse-icon"></div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <div class="container auto-grid">
+        <div class="container container--section auto-grid">
             <div class="about-text glass-card fade-in">
-                <h2>The Otterdays Vision</h2>
-                <p>We believe Minecraft should be fast, stable, and community-driven. Built on a modernized Fabric stack, Otterdays offers seamless integration between our web control dashboard and the living, breathing game world.</p>
+                <p class="section-kicker">About</p>
+                <h2>Small server, <span class="highlight-inline">big bias</span> toward calm worlds</h2>
+                <p class="lead">No lobby circus—just survival, noise kept down, and Fabric where it earns its keep. The helper dashboard (start/stop, logs, whitelist) lives beside the jar so we are not SSH-guessing at 2 a.m.</p>
                 <div class="stats">
                     <div class="stat-item">
                         <h3>99%</h3>
-                        <p>Uptime</p>
+                        <p>Up when we mean it</p>
                     </div>
                     <div class="stat-item">
                         <h3>20 TPS</h3>
-                        <p>Performance</p>
+                        <p>Target, not décor</p>
                     </div>
-                    <div class="stat-item">
+                    <a href="#mods" class="stat-item stat-item--link">
                         <h3>100+</h3>
-                        <p>Custom Mods</p>
-                    </div>
+                        <p>Mods, curated</p>
+                    </a>
                 </div>
             </div>
             <!-- Filler cards for aesthetics -->
@@ -136,43 +138,61 @@
 
     <!-- Features Section -->
     <section id="features" class="features">
-        <div class="container text-center fade-in">
-            <h2>Why Play Here?</h2>
-            <p class="section-desc">A perfect balance of vanilla mechanics and server-side enhancements.</p>
+        <div class="container container--section fade-in">
+            <header class="features-header">
+                <p class="section-kicker">Stack</p>
+                <h2>What actually runs here</h2>
+                <p class="section-desc section-desc--left">Fabric for performance mods and sane server hooks—plus a whitelist so randoms do not stress-test your base while you are AFK fishing.</p>
+            </header>
             
-            <div class="features-grid">
-                <div class="feature-card glass-card hover-lift">
+            <div class="features-bento">
+                <article class="feature-card feature-card--tall glass-card hover-lift">
                     <div class="feature-icon emerald-glow">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                     </div>
-                    <h3>Fabric Optimized</h3>
-                    <p>Running on the latest Fabric server engine with maximum efficiency plugins for an uncompromising 20 TPS standard.</p>
-                </div>
+                    <h3>Fabric, not mod soup</h3>
+                    <p>Latest-line Fabric with optimization and QoL chosen on purpose. Goal is headroom for TPS, not a modpack arms race.</p>
+                </article>
                 
-                <div class="feature-card glass-card hover-lift delay-1">
+                <article class="feature-card glass-card hover-lift delay-1">
                     <div class="feature-icon diamond-glow">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>
-                    <h3>Secure & Fair</h3>
-                    <p>A whitelisted community where griefing is reverted automatically, and operations are transparently managed via the helper UI.</p>
-                </div>
+                    <h3>Whitelist + rollback sanity</h3>
+                    <p>Known players, fewer surprises. When something goes sideways, we lean on backups and clear rules—not vibes.</p>
+                </article>
                 
-                <div class="feature-card glass-card hover-lift delay-2">
+                <article class="feature-card glass-card hover-lift delay-2">
                     <div class="feature-icon amethyst-glow">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                     </div>
-                    <h3>Global Quality</h3>
-                    <p>Experience ultra-low latency, custom bot integrations, and comprehensive dashboard reporting.</p>
-                </div>
+                    <h3>Helper UI beside the server</h3>
+                    <p>Local dashboard for console, mods, whitelist, and the boring ops stuff—so the game stays the game.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mod list (data from mods.json) -->
+    <section id="mods" class="mods-section" aria-labelledby="mods-heading">
+        <div class="container container--section fade-in">
+            <header class="features-header">
+                <p class="section-kicker">Mod list</p>
+                <h2 id="mods-heading">What is on the server</h2>
+                <p class="section-desc section-desc--left">Names and versions ship from <code class="inline-code">mods.json</code> in this repo—edit that file and redeploy Pages to update the public list.</p>
+            </header>
+            <div id="mods-root" class="mods-root" aria-live="polite">
+                <p class="mods-status">Loading mod list…</p>
             </div>
         </div>
     </section>
 
     <!-- Join Section -->
     <section id="join" class="join-section">
-        <div class="container join-container glass-card text-center fade-in">
-            <h2>Ready to Dig In?</h2>
-            <p>Copy the IP below and paste it in your Minecraft Multiplayer menu.</p>
+        <div class="container container--join join-container glass-card text-center fade-in">
+            <p class="section-kicker section-kicker--center">Connect</p>
+            <h2>Paste this in Multiplayer</h2>
+            <p class="join-lead">Java Edition only. If you are not on the whitelist yet, poke ops on Discord—this box is just the address.</p>
             
             <div class="ip-copy-wrapper">
                 <input type="text" id="server-ip" class="ip-input" value="play.otterdays.net" readonly>
@@ -181,7 +201,7 @@
                 </button>
             </div>
             
-            <p class="join-requirements">Requires Minecraft Java Edition &bullet; Whitelist enforced</p>
+            <p class="join-requirements">Java Edition · Whitelist</p>
             <p class="join-hint"><kbd>Ctrl</kbd><span class="join-hint-plus">+</span><kbd>C</kbd> works when the IP field is focused</p>
         </div>
     </section>
@@ -272,7 +292,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            const sections = ['home', 'about', 'features', 'join'];
+            const sections = ['home', 'about', 'features', 'mods', 'join'];
             const navAnchors = document.querySelectorAll('[data-nav-anchor]');
             function updateActiveNav() {
                 const mid = window.scrollY + window.innerHeight * 0.25;
@@ -339,6 +359,125 @@
                 if (prefersReduce) el.classList.add('visible');
                 else observer.observe(el);
             });
+
+            function loadModList() {
+                var root = document.getElementById('mods-root');
+                if (!root) return;
+
+                function setStatus(msg, cls) {
+                    root.textContent = '';
+                    var p = document.createElement('p');
+                    p.className = cls || 'mods-status';
+                    p.textContent = msg;
+                    root.appendChild(p);
+                }
+
+                fetch('mods.json', { cache: 'no-store' })
+                    .then(function (r) {
+                        if (!r.ok) throw new Error('fetch');
+                        return r.json();
+                    })
+                    .then(function (data) {
+                        var mods = data.mods;
+                        if (!Array.isArray(mods) || mods.length === 0) {
+                            setStatus('No mods in mods.json yet. Add a "mods" array with { name, version?, url?, category?, notes? }.', 'mods-empty');
+                            return;
+                        }
+
+                        root.textContent = '';
+                        var metaLine = document.createElement('p');
+                        metaLine.className = 'mods-meta';
+                        var bits = [];
+                        if (data.loader) bits.push(String(data.loader));
+                        if (data.minecraft) bits.push('Minecraft ' + String(data.minecraft));
+                        if (data.updated) bits.push('list ' + String(data.updated));
+                        if (bits.length) {
+                            metaLine.textContent = bits.join(' · ');
+                            root.appendChild(metaLine);
+                        }
+
+                        var byCat = {};
+                        mods.forEach(function (m) {
+                            if (!m || typeof m.name !== 'string' || !m.name.trim()) return;
+                            var cat = (m.category && String(m.category).trim()) || 'Other';
+                            if (!byCat[cat]) byCat[cat] = [];
+                            byCat[cat].push(m);
+                        });
+
+                        var cats = Object.keys(byCat).sort(function (a, b) {
+                            return a.localeCompare(b, undefined, { sensitivity: 'base' });
+                        });
+
+                        cats.forEach(function (cat) {
+                            byCat[cat].sort(function (a, b) {
+                                return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+                            });
+
+                            var gh = document.createElement('h3');
+                            gh.className = 'mods-group-title';
+                            gh.textContent = cat;
+                            root.appendChild(gh);
+
+                            var ul = document.createElement('ul');
+                            ul.className = 'mods-list';
+
+                            byCat[cat].forEach(function (m) {
+                                var li = document.createElement('li');
+                                li.className = 'mod-row';
+
+                                var main = document.createElement('div');
+                                main.className = 'mod-row__main';
+
+                                var hasUrl = m.url && /^https?:\/\//i.test(String(m.url).trim());
+                                var title = document.createElement(hasUrl ? 'a' : 'span');
+                                title.className = 'mod-name';
+                                title.textContent = m.name.trim();
+                                if (hasUrl) {
+                                    title.href = String(m.url).trim();
+                                    title.rel = 'noopener noreferrer';
+                                    title.target = '_blank';
+                                }
+                                main.appendChild(title);
+
+                                if (m.notes && String(m.notes).trim()) {
+                                    var note = document.createElement('p');
+                                    note.className = 'mod-note';
+                                    note.textContent = String(m.notes).trim();
+                                    main.appendChild(note);
+                                }
+
+                                li.appendChild(main);
+
+                                var meta = document.createElement('div');
+                                meta.className = 'mod-row__meta';
+
+                                if (m.version && String(m.version).trim()) {
+                                    var ver = document.createElement('span');
+                                    ver.className = 'mod-version';
+                                    ver.textContent = String(m.version).trim();
+                                    meta.appendChild(ver);
+                                }
+                                if (m.side && String(m.side).trim()) {
+                                    var side = document.createElement('span');
+                                    side.className = 'mod-side';
+                                    side.textContent = String(m.side).trim();
+                                    meta.appendChild(side);
+                                }
+
+                                if (meta.childNodes.length) li.appendChild(meta);
+
+                                ul.appendChild(li);
+                            });
+
+                            root.appendChild(ul);
+                        });
+                    })
+                    .catch(function () {
+                        setStatus('Could not load mods.json. For local file:// preview, run a tiny static server from the repo root so fetch works.', 'mods-error');
+                    });
+            }
+
+            loadModList();
         })();
     </script>
 </body>
