@@ -1111,6 +1111,17 @@ a.mod-name:hover {
     color: var(--clr-text-muted);
 }
 
+.join-discord-link {
+    color: var(--clr-emerald);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.join-discord-link:hover {
+    color: var(--clr-text);
+}
+
 .ip-copy-wrapper {
     display: flex;
     background: hsla(0, 0%, 0%, 0.3);

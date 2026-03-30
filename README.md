@@ -6,7 +6,7 @@
 
 Welcome to the Otter's Den Server official repository. We provide the community with a high-performance Minecraft experience focused on friendship and otters.
 
-**Website mod list:** edit [`mods.json`](mods.json) at the repo root (array under `mods`). GitHub Pages serves it next to `index.html` so the site can render the list automatically.
+**Website mod list:** edit the JSON inside `index.html` in the `<script type="application/json" id="otterdays-mod-data">` block (same `mods` array shape as before). Pure static files—no backend, no build, works on GitHub Pages and when opening the page locally.
 
 ---
 

@@ -173,17 +173,14 @@
         </div>
     </section>
 
-    <!-- Mod list (data from mods.json) -->
     <section id="mods" class="mods-section" aria-labelledby="mods-heading">
         <div class="container container--section fade-in">
             <header class="features-header">
                 <p class="section-kicker">Mod list</p>
                 <h2 id="mods-heading">What is on the server</h2>
-                <p class="section-desc section-desc--left">Names and versions ship from <code class="inline-code">mods.json</code> in this repo—edit that file and redeploy Pages to update the public list.</p>
+                <p class="section-desc section-desc--left">Fabric stack we actually run—performance, libraries, and QoL. Ask in Discord if you need the full picture for your client.</p>
             </header>
-            <div id="mods-root" class="mods-root" aria-live="polite">
-                <p class="mods-status">Loading mod list…</p>
-            </div>
+            <div id="mods-root" class="mods-root" aria-live="polite"></div>
         </div>
     </section>
 
@@ -192,7 +189,7 @@
         <div class="container container--join join-container glass-card text-center fade-in">
             <p class="section-kicker section-kicker--center">Connect</p>
             <h2>Paste this in Multiplayer</h2>
-            <p class="join-lead">Java Edition only. If you are not on the whitelist yet, poke ops on Discord—this box is just the address.</p>
+            <p class="join-lead">Java Edition only. If you are not on the whitelist yet, poke ops on <a href="https://discord.gg/2nmKgVfw" class="join-discord-link" rel="noopener noreferrer" target="_blank">Discord</a>—this box is just the address.</p>
             
             <div class="ip-copy-wrapper">
                 <input type="text" id="server-ip" class="ip-input" value="play.otterdays.net" readonly>
@@ -218,13 +215,52 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 Otterdays Server | Ryan & Composer 2</p>
                 <div class="social-links">
-                    <a href="#">Discord</a>
-                    <a href="#">Wiki</a>
+                    <a href="https://discord.gg/2nmKgVfw" rel="noopener noreferrer" target="_blank">Discord</a>
+                    <a href="https://minecraft.wiki/w/Java_Edition_version_history/Development_versions" rel="noopener noreferrer" target="_blank">Version history</a>
                     <a href="#">Support</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Mod list data (JSON, not executed) -->
+    <script type="application/json" id="otterdays-mod-data">
+{
+  "minecraft": "1.21.x",
+  "loader": "Fabric",
+  "updated": "2026-03-29",
+  "mods": [
+    {
+      "name": "Fabric API",
+      "version": "",
+      "url": "https://modrinth.com/mod/fabric-api",
+      "category": "Core",
+      "notes": "Required dependency for most Fabric mods."
+    },
+    {
+      "name": "Lithium",
+      "version": "",
+      "url": "https://modrinth.com/mod/lithium",
+      "category": "Performance",
+      "notes": "Server-side game logic optimizations."
+    },
+    {
+      "name": "FerriteCore",
+      "version": "",
+      "url": "https://modrinth.com/mod/ferrite-core",
+      "category": "Performance",
+      "notes": "Lowers memory use for block entities and entities."
+    },
+    {
+      "name": "Fabric Language Kotlin",
+      "version": "",
+      "url": "https://modrinth.com/mod/fabric-language-kotlin",
+      "category": "Library",
+      "notes": "Only needed if a mod bundles Kotlin."
+    }
+  ]
+}
+    </script>
 
     <!-- JavaScript -->
     <script>
@@ -372,109 +408,113 @@
                     root.appendChild(p);
                 }
 
-                fetch('mods.json', { cache: 'no-store' })
-                    .then(function (r) {
-                        if (!r.ok) throw new Error('fetch');
-                        return r.json();
-                    })
-                    .then(function (data) {
-                        var mods = data.mods;
-                        if (!Array.isArray(mods) || mods.length === 0) {
-                            setStatus('No mods in mods.json yet. Add a "mods" array with { name, version?, url?, category?, notes? }.', 'mods-empty');
-                            return;
-                        }
+                var blob = document.getElementById('otterdays-mod-data');
+                if (!blob || !blob.textContent) {
+                    setStatus('Mod list is unavailable right now.', 'mods-error');
+                    return;
+                }
 
-                        root.textContent = '';
-                        var metaLine = document.createElement('p');
-                        metaLine.className = 'mods-meta';
-                        var bits = [];
-                        if (data.loader) bits.push(String(data.loader));
-                        if (data.minecraft) bits.push('Minecraft ' + String(data.minecraft));
-                        if (data.updated) bits.push('list ' + String(data.updated));
-                        if (bits.length) {
-                            metaLine.textContent = bits.join(' · ');
-                            root.appendChild(metaLine);
-                        }
+                var data;
+                try {
+                    data = JSON.parse(blob.textContent.trim());
+                } catch (err) {
+                    setStatus('Mod list could not be loaded.', 'mods-error');
+                    return;
+                }
 
-                        var byCat = {};
-                        mods.forEach(function (m) {
-                            if (!m || typeof m.name !== 'string' || !m.name.trim()) return;
-                            var cat = (m.category && String(m.category).trim()) || 'Other';
-                            if (!byCat[cat]) byCat[cat] = [];
-                            byCat[cat].push(m);
-                        });
+                var mods = data.mods;
+                if (!Array.isArray(mods) || mods.length === 0) {
+                    setStatus('No mods are listed yet.', 'mods-empty');
+                    return;
+                }
 
-                        var cats = Object.keys(byCat).sort(function (a, b) {
-                            return a.localeCompare(b, undefined, { sensitivity: 'base' });
-                        });
+                root.textContent = '';
+                var metaLine = document.createElement('p');
+                metaLine.className = 'mods-meta';
+                var bits = [];
+                if (data.loader) bits.push(String(data.loader));
+                if (data.minecraft) bits.push('Minecraft ' + String(data.minecraft));
+                if (data.updated) bits.push('list ' + String(data.updated));
+                if (bits.length) {
+                    metaLine.textContent = bits.join(' · ');
+                    root.appendChild(metaLine);
+                }
 
-                        cats.forEach(function (cat) {
-                            byCat[cat].sort(function (a, b) {
-                                return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
-                            });
+                var byCat = {};
+                mods.forEach(function (m) {
+                    if (!m || typeof m.name !== 'string' || !m.name.trim()) return;
+                    var cat = (m.category && String(m.category).trim()) || 'Other';
+                    if (!byCat[cat]) byCat[cat] = [];
+                    byCat[cat].push(m);
+                });
 
-                            var gh = document.createElement('h3');
-                            gh.className = 'mods-group-title';
-                            gh.textContent = cat;
-                            root.appendChild(gh);
+                var cats = Object.keys(byCat).sort(function (a, b) {
+                    return a.localeCompare(b, undefined, { sensitivity: 'base' });
+                });
 
-                            var ul = document.createElement('ul');
-                            ul.className = 'mods-list';
-
-                            byCat[cat].forEach(function (m) {
-                                var li = document.createElement('li');
-                                li.className = 'mod-row';
-
-                                var main = document.createElement('div');
-                                main.className = 'mod-row__main';
-
-                                var hasUrl = m.url && /^https?:\/\//i.test(String(m.url).trim());
-                                var title = document.createElement(hasUrl ? 'a' : 'span');
-                                title.className = 'mod-name';
-                                title.textContent = m.name.trim();
-                                if (hasUrl) {
-                                    title.href = String(m.url).trim();
-                                    title.rel = 'noopener noreferrer';
-                                    title.target = '_blank';
-                                }
-                                main.appendChild(title);
-
-                                if (m.notes && String(m.notes).trim()) {
-                                    var note = document.createElement('p');
-                                    note.className = 'mod-note';
-                                    note.textContent = String(m.notes).trim();
-                                    main.appendChild(note);
-                                }
-
-                                li.appendChild(main);
-
-                                var meta = document.createElement('div');
-                                meta.className = 'mod-row__meta';
-
-                                if (m.version && String(m.version).trim()) {
-                                    var ver = document.createElement('span');
-                                    ver.className = 'mod-version';
-                                    ver.textContent = String(m.version).trim();
-                                    meta.appendChild(ver);
-                                }
-                                if (m.side && String(m.side).trim()) {
-                                    var side = document.createElement('span');
-                                    side.className = 'mod-side';
-                                    side.textContent = String(m.side).trim();
-                                    meta.appendChild(side);
-                                }
-
-                                if (meta.childNodes.length) li.appendChild(meta);
-
-                                ul.appendChild(li);
-                            });
-
-                            root.appendChild(ul);
-                        });
-                    })
-                    .catch(function () {
-                        setStatus('Could not load mods.json. For local file:// preview, run a tiny static server from the repo root so fetch works.', 'mods-error');
+                cats.forEach(function (cat) {
+                    byCat[cat].sort(function (a, b) {
+                        return a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
                     });
+
+                    var gh = document.createElement('h3');
+                    gh.className = 'mods-group-title';
+                    gh.textContent = cat;
+                    root.appendChild(gh);
+
+                    var ul = document.createElement('ul');
+                    ul.className = 'mods-list';
+
+                    byCat[cat].forEach(function (m) {
+                        var li = document.createElement('li');
+                        li.className = 'mod-row';
+
+                        var main = document.createElement('div');
+                        main.className = 'mod-row__main';
+
+                        var hasUrl = m.url && /^https?:\/\//i.test(String(m.url).trim());
+                        var title = document.createElement(hasUrl ? 'a' : 'span');
+                        title.className = 'mod-name';
+                        title.textContent = m.name.trim();
+                        if (hasUrl) {
+                            title.href = String(m.url).trim();
+                            title.rel = 'noopener noreferrer';
+                            title.target = '_blank';
+                        }
+                        main.appendChild(title);
+
+                        if (m.notes && String(m.notes).trim()) {
+                            var note = document.createElement('p');
+                            note.className = 'mod-note';
+                            note.textContent = String(m.notes).trim();
+                            main.appendChild(note);
+                        }
+
+                        li.appendChild(main);
+
+                        var meta = document.createElement('div');
+                        meta.className = 'mod-row__meta';
+
+                        if (m.version && String(m.version).trim()) {
+                            var ver = document.createElement('span');
+                            ver.className = 'mod-version';
+                            ver.textContent = String(m.version).trim();
+                            meta.appendChild(ver);
+                        }
+                        if (m.side && String(m.side).trim()) {
+                            var side = document.createElement('span');
+                            side.className = 'mod-side';
+                            side.textContent = String(m.side).trim();
+                            meta.appendChild(side);
+                        }
+
+                        if (meta.childNodes.length) li.appendChild(meta);
+
+                        ul.appendChild(li);
+                    });
+
+                    root.appendChild(ul);
+                });
             }
 
             loadModList();
