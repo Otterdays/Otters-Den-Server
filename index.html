@@ -37,6 +37,15 @@
     <nav class="navbar" id="navbar" aria-label="Primary">
         <div class="nav-container">
             <a href="#home" class="logo">
+                <img
+                    class="logo-mark"
+                    src="assets/otter_den_banner.png"
+                    width="640"
+                    height="640"
+                    alt=""
+                    decoding="async"
+                    aria-hidden="true"
+                >
                 <span class="logo-text">Otterdays</span>
             </a>
             <div class="nav-links" id="nav-links">
@@ -81,6 +90,16 @@
         </div>
         
         <div class="hero-content">
+            <figure class="hero-otter-banner">
+                <img
+                    src="assets/otter_den_banner.png"
+                    width="640"
+                    height="640"
+                    alt="Otter's Den — voxel-style riverside cabin in the forest with otters in the water, golden-hour light."
+                    decoding="async"
+                    fetchpriority="high"
+                >
+            </figure>
             <div class="badge-wrap">
                 <div class="badge">
                     <span class="pulse-dot"></span> Java 26.1 · Fabric
@@ -170,6 +189,37 @@
                     <p>Local dashboard for console, mods, whitelist, and the boring ops stuff—so the game stays the game.</p>
                 </article>
             </div>
+
+            <figure class="panel-showcase glass-card fade-in delay-2" aria-labelledby="panel-showcase-caption">
+                <div class="panel-showcase__chrome" aria-hidden="true">
+                    <span class="panel-showcase__dot"></span>
+                    <span class="panel-showcase__dot"></span>
+                    <span class="panel-showcase__dot"></span>
+                </div>
+                <div class="panel-showcase__frame">
+                    <button
+                        type="button"
+                        class="panel-showcase__trigger"
+                        id="panel-showcase-open"
+                        aria-haspopup="dialog"
+                        aria-expanded="false"
+                        aria-controls="panel-lightbox"
+                    >
+                        <span class="panel-showcase__trigger-hint" aria-hidden="true">Click for fullscreen · original size</span>
+                        <img
+                            src="assets/Screenshot%202026-03-30%20001510.png"
+                            width="3422"
+                            height="1248"
+                            alt="Otterdays custom helper dashboard: server console, join info, whitelist, mods list, and controls in a dark neon-accented layout."
+                            loading="lazy"
+                            decoding="async"
+                        >
+                    </button>
+                </div>
+                <figcaption id="panel-showcase-caption" class="panel-showcase__caption">
+                    The in-house helper panel—console, mods, whitelist, and ops in one place (runs next to the jar, not on the public web). <span class="panel-showcase__caption-hint">Select the preview to open it full screen at native resolution (scroll or pinch-zoom to read details).</span>
+                </figcaption>
+            </figure>
         </div>
     </section>
 
@@ -203,6 +253,46 @@
         </div>
     </section>
     </main>
+
+    <dialog class="panel-lightbox" id="panel-lightbox" aria-labelledby="panel-lightbox-title">
+        <p id="panel-lightbox-title" class="visually-hidden">Helper dashboard screenshot at full resolution</p>
+        <header class="panel-lightbox__header">
+            <div class="panel-lightbox__toolbar" role="toolbar" aria-label="Screenshot controls">
+                <button type="button" class="panel-lightbox__tool" id="panel-lightbox-fit" aria-pressed="false" title="Fit whole image in view (F)">
+                    Fit to screen
+                </button>
+                <button type="button" class="panel-lightbox__tool" id="panel-lightbox-recenter" title="Scroll to center (R)">
+                    Recenter
+                </button>
+                <a
+                    class="panel-lightbox__tool panel-lightbox__tool--link"
+                    href="assets/Screenshot%202026-03-30%20001510.png"
+                    download="otterdays-dashboard-screenshot.png"
+                >Download PNG</a>
+            </div>
+            <button type="button" class="panel-lightbox__close" id="panel-lightbox-close" aria-label="Close">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </header>
+        <div
+            class="panel-lightbox__viewport"
+            id="panel-lightbox-viewport"
+            tabindex="0"
+            role="document"
+            aria-label="Screenshot — scroll to pan, or use Fit to screen for an overview"
+        >
+            <img
+                class="panel-lightbox__img"
+                id="panel-lightbox-img"
+                src="assets/Screenshot%202026-03-30%20001510.png"
+                alt=""
+                width="3422"
+                height="1248"
+                decoding="async"
+            >
+        </div>
+        <p class="panel-lightbox__hint" id="panel-lightbox-hint"><kbd>Esc</kbd> close · <kbd>F</kbd> fit / 1:1 · <kbd>R</kbd> recenter · <kbd>Alt</kbd>+arrows pan · drag or scroll</p>
+    </dialog>
 
     <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
@@ -344,6 +434,147 @@
             }
             window.addEventListener('scroll', updateActiveNav, { passive: true });
             updateActiveNav();
+
+            (function panelLightbox() {
+                var openBtn = document.getElementById('panel-showcase-open');
+                var dialogEl = document.getElementById('panel-lightbox');
+                var closeBtn = document.getElementById('panel-lightbox-close');
+                var viewport = document.getElementById('panel-lightbox-viewport');
+                var lightboxImg = document.getElementById('panel-lightbox-img');
+                var fitBtn = document.getElementById('panel-lightbox-fit');
+                var recenterBtn = document.getElementById('panel-lightbox-recenter');
+                if (!openBtn || !dialogEl || !closeBtn || !viewport || !lightboxImg || !fitBtn || !recenterBtn)
+                    return;
+
+                function isFit() {
+                    return lightboxImg.classList.contains('panel-lightbox__img--fit');
+                }
+
+                function setFit(on) {
+                    lightboxImg.classList.toggle('panel-lightbox__img--fit', on);
+                    fitBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+                    fitBtn.textContent = on ? 'Actual size (1:1)' : 'Fit to screen';
+                }
+
+                function toggleFit() {
+                    setFit(!isFit());
+                    if (isFit()) scheduleCenterViewport();
+                    else scheduleTopCenterH();
+                }
+
+                function centerViewportScroll() {
+                    var excessX = viewport.scrollWidth - viewport.clientWidth;
+                    var excessY = viewport.scrollHeight - viewport.clientHeight;
+                    viewport.scrollLeft = excessX > 0 ? excessX / 2 : 0;
+                    viewport.scrollTop = excessY > 0 ? excessY / 2 : 0;
+                }
+
+                /** Top of image visible; horizontal center for ultrawide (avoids clipped top). */
+                function scrollPanelTopAndCenterH() {
+                    var excessX = viewport.scrollWidth - viewport.clientWidth;
+                    viewport.scrollTop = 0;
+                    viewport.scrollLeft = excessX > 0 ? excessX / 2 : 0;
+                }
+
+                function scheduleCenterViewport() {
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(centerViewportScroll);
+                    });
+                }
+
+                function scheduleTopCenterH() {
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(scrollPanelTopAndCenterH);
+                    });
+                }
+
+                function tryFullscreen() {
+                    if (!dialogEl.requestFullscreen) return;
+                    var p = dialogEl.requestFullscreen();
+                    if (p && typeof p.then === 'function') {
+                        p.then(scheduleTopCenterH).catch(function () {});
+                    }
+                }
+
+                function exitFullscreenIfNeeded() {
+                    if (!document.fullscreenElement || !document.exitFullscreen) return;
+                    var q = document.exitFullscreen();
+                    if (q && typeof q.catch === 'function') q.catch(function () {});
+                }
+
+                function openLightbox() {
+                    dialogEl.showModal();
+                    openBtn.setAttribute('aria-expanded', 'true');
+                    setFit(false);
+                    tryFullscreen();
+                    scheduleTopCenterH();
+                    if (!lightboxImg.complete) {
+                        lightboxImg.addEventListener('load', scheduleTopCenterH, { once: true });
+                    }
+                }
+
+                openBtn.addEventListener('click', openLightbox);
+
+                fitBtn.addEventListener('click', function () {
+                    toggleFit();
+                });
+
+                recenterBtn.addEventListener('click', function () {
+                    scheduleCenterViewport();
+                });
+
+                document.addEventListener('fullscreenchange', function () {
+                    if (!dialogEl.open) return;
+                    scheduleTopCenterH();
+                });
+
+                closeBtn.addEventListener('click', function () {
+                    dialogEl.close();
+                });
+
+                dialogEl.addEventListener('close', function () {
+                    openBtn.setAttribute('aria-expanded', 'false');
+                    exitFullscreenIfNeeded();
+                    setFit(false);
+                    try {
+                        openBtn.focus();
+                    } catch (err) {}
+                });
+
+                dialogEl.addEventListener('keydown', function (e) {
+                    if (!dialogEl.open) return;
+                    var t = e.target;
+                    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+
+                    if (e.key === 'f' || e.key === 'F') {
+                        e.preventDefault();
+                        toggleFit();
+                        return;
+                    }
+                    if (e.key === 'r' || e.key === 'R') {
+                        e.preventDefault();
+                        scheduleCenterViewport();
+                        return;
+                    }
+
+                    if (e.altKey) {
+                        var step = e.shiftKey ? 160 : 56;
+                        if (e.key === 'ArrowLeft') {
+                            viewport.scrollLeft -= step;
+                            e.preventDefault();
+                        } else if (e.key === 'ArrowRight') {
+                            viewport.scrollLeft += step;
+                            e.preventDefault();
+                        } else if (e.key === 'ArrowUp') {
+                            viewport.scrollTop -= step;
+                            e.preventDefault();
+                        } else if (e.key === 'ArrowDown') {
+                            viewport.scrollTop += step;
+                            e.preventDefault();
+                        }
+                    }
+                });
+            })();
 
             const copyBtn = document.getElementById('copy-btn');
             const ipInput = document.getElementById('server-ip');
