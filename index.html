@@ -33,6 +33,8 @@
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
     <!-- Navbar -->
     <nav class="navbar" id="navbar" aria-label="Primary">
         <div class="nav-container">
@@ -52,6 +54,7 @@
                 <a href="#home" data-nav-anchor>Home</a>
                 <a href="#about" data-nav-anchor>About</a>
                 <a href="#features" data-nav-anchor>Features</a>
+                <a href="#survival" data-nav-anchor>Survival</a>
                 <a href="#mods" data-nav-anchor>Mods</a>
                 <a href="#join" class="btn-nav" data-nav-anchor>Play Now</a>
             </div>
@@ -87,6 +90,17 @@
             <img src="assets/minecraft_bg.png" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" onerror="this.style.display='none'">
             <div class="overlay"></div>
             <div class="hero-bg-fallback" aria-hidden="true"></div>
+            <!-- Ambient particles -->
+            <div class="hero-particles" aria-hidden="true">
+                <span class="hero-particle"></span>
+                <span class="hero-particle"></span>
+                <span class="hero-particle"></span>
+                <span class="hero-particle"></span>
+                <span class="hero-particle"></span>
+                <span class="hero-particle"></span>
+                <span class="hero-particle"></span>
+                <span class="hero-particle"></span>
+            </div>
         </div>
         
         <div class="hero-content">
@@ -106,7 +120,7 @@
                 </div>
             </div>
             <h1 class="hero-title">Survival with <span class="highlight">teeth</span></h1>
-            <p class="hero-subtitle">Whitelist-only den: vanilla-first loops, a curated mod set, and ops who actually restart the thing when it sulks. Run by Ryan; tooling co-piloted with Composer 2.</p>
+            <p class="hero-subtitle"><span class="hero-subtitle__pill">Whitelist-only den</span>: vanilla-first loops, a curated mod set, and ops who actually restart the thing when it sulks. Run by Ryan; tooling co-piloted with Composer 2.</p>
             
             <div class="hero-cta">
                 <a href="#join" class="btn glow-btn">
@@ -132,9 +146,18 @@
                 <p class="lead">No lobby circus—just survival, noise kept down, and Fabric where it earns its keep. The helper dashboard (start/stop, logs, whitelist) lives beside the jar so we are not SSH-guessing at 2 a.m.</p>
                 <div class="stats">
                     <div class="stat-item">
-                        <h3>99%</h3>
+                        <h3 data-count="99" data-suffix="%">0%</h3>
                         <p>Up when we mean it</p>
                     </div>
+                    <div class="stat-item">
+                        <h3 data-count="20" data-suffix=" TPS">0 TPS</h3>
+                        <p>Target, not d&eacute;cor</p>
+                    </div>
+                    <a href="#mods" class="stat-item stat-item--link">
+                        <h3 data-count="100" data-suffix="+">0+</h3>
+                        <p>Mods, curated</p>
+                    </a>
+                </div>
                     <div class="stat-item">
                         <h3>20 TPS</h3>
                         <p>Target, not décor</p>
@@ -223,12 +246,192 @@
         </div>
     </section>
 
+    <!-- Survival Section -->
+    <section id="survival" class="survival-section" aria-labelledby="survival-heading">
+        <div class="container container--section fade-in">
+            <header class="survival-header">
+                <p class="section-kicker">Survival</p>
+                <h2 id="survival-heading">How the world actually works</h2>
+                <p class="section-desc section-desc--left">Vanilla-first survival with Fabric mods that earn their keep. No pay-to-win, no land claims you buy, no grief protection you configure—just a whitelist, common sense, and ops who show up when things go sideways.</p>
+            </header>
+
+            <!-- World Rules -->
+            <div class="survival-grid">
+                <article class="survival-card glass-card hover-lift">
+                    <div class="survival-icon survival-icon--emerald">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Difficulty &amp; gameplay</h3>
+                    <ul class="survival-list">
+                        <li><strong>Hardcore survival on Easy</strong> — mobs hit, resources matter, but you are not farming iron for three hours to afford a sword.</li>
+                        <li><strong>Survival mode only</strong> — no creative, no spectator, no <code>/gamemode</code> for players. Ops use creative for builds and rollbacks only.</li>
+                        <li><strong>Whitelist enforced</strong> — <code>white-list=true</code> + <code>enforce-whitelist=true</code> in server.properties. If you are not on the list, you get kicked.</li>
+                        <li><strong>Force gamemode</strong> — <code>force-gamemode=true</code> so you cannot accidentally tab into creative.</li>
+                    </ul>
+                </article>
+
+                <article class="survival-card glass-card hover-lift delay-1">
+                    <div class="survival-icon survival-icon--diamond">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <h3>Base building &amp; griefing</h3>
+                    <ul class="survival-list">
+                        <li><strong>No land claim plugins</strong> — this is a whitelist server. We trust each other. If someone griefs, they are off the list permanently.</li>
+                        <li><strong>Build anywhere</strong> — the world is yours. Just respect other players' builds and do not tear down what is not yours.</li>
+                        <li><strong>Backups are real</strong> — world backups run on a schedule. If something goes wrong, we restore from the last clean save.</li>
+                        <li><strong>Common sense rule</strong> — if you have to ask whether it is grief, it probably is. Just ask first.</li>
+                    </ul>
+                </article>
+
+                <article class="survival-card glass-card hover-lift delay-2">
+                    <div class="survival-icon survival-icon--amethyst">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Server uptime &amp; restarts</h3>
+                    <ul class="survival-list">
+                        <li><strong>20 TPS target</strong> — if the server drops below 18 for more than a few minutes, ops investigate.</li>
+                        <li><strong>Scheduled restarts</strong> — the server restarts periodically to clear memory leaks and keep chunk loading smooth.</li>
+                        <li><strong>Ops announce restarts</strong> — you get a warning in chat before the server goes down. Save your stuff.</li>
+                        <li><strong>Uptime is a goal, not a religion</strong> — we are not a 24/7 hosting company. The server runs when the host machine is on.</li>
+                    </ul>
+                </article>
+
+                <article class="survival-card glass-card hover-lift delay-3">
+                    <div class="survival-icon survival-icon--gold">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Community &amp; etiquette</h3>
+                    <ul class="survival-list">
+                        <li><strong>Small group, high trust</strong> — this is not a public SMP. You are here because someone vouched for you.</li>
+                        <li><strong>Chat is logged</strong> — RCON captures all chat. Ops can review if there is a dispute.</li>
+                        <li><strong>Respect the world</strong> — no massive strip mines near spawn, no lava casts on other people's hills, no redstone clocks that tank TPS.</li>
+                        <li><strong>Discord for coordination</strong> — server chat is for in-game comms. Discord is for planning, screenshots, and "is the server up?"</li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- Server Info Panel -->
+            <div class="server-info-panel glass-card fade-in">
+                <h3>Server details</h3>
+                <div class="server-info-grid">
+                    <div class="server-info-item">
+                        <span class="server-info-label">Edition</span>
+                        <span class="server-info-value">Java Edition 26.1 (1.21.4)</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">Mod loader</span>
+                        <span class="server-info-value">Fabric</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">Difficulty</span>
+                        <span class="server-info-value">Easy</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">Gamemode</span>
+                        <span class="server-info-value">Survival (forced)</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">World type</span>
+                        <span class="server-info-value">Default (normal)</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">Whitelist</span>
+                        <span class="server-info-value">Enabled (enforced)</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">RCON</span>
+                        <span class="server-info-value">Enabled</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">Server query</span>
+                        <span class="server-info-value">Enabled (MOTD + player count)</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">Data packs</span>
+                        <span class="server-info-value">Vanilla, Fabric Convention Tags v2</span>
+                    </div>
+                    <div class="server-info-item">
+                        <span class="server-info-label">Structures</span>
+                        <span class="server-info-value">Enabled (villages, temples, etc.)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sources & References -->
+            <div class="sources-panel glass-card fade-in">
+                <h3>Sources &amp; references</h3>
+                <div class="sources-grid">
+                    <a class="source-card" href="https://fabricmc.net/" target="_blank" rel="noopener noreferrer">
+                        <div class="source-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                        </div>
+                        <div class="source-card-body">
+                            <h4>FabricMC</h4>
+                            <p>Mod loader and API for this server. Lightweight, fast, and designed for modern Minecraft.</p>
+                        </div>
+                    </a>
+                    <a class="source-card" href="https://modrinth.com/" target="_blank" rel="noopener noreferrer">
+                        <div class="source-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        </div>
+                        <div class="source-card-body">
+                            <h4>Modrinth</h4>
+                            <p>Open-source mod platform. Where we search, download, and install server mods.</p>
+                        </div>
+                    </a>
+                    <a class="source-card" href="https://minecraft.wiki/" target="_blank" rel="noopener noreferrer">
+                        <div class="source-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        </div>
+                        <div class="source-card-body">
+                            <h4>Minecraft Wiki</h4>
+                            <p>Comprehensive wiki for game mechanics, commands, blocks, and version history.</p>
+                        </div>
+                    </a>
+                    <a class="source-card" href="https://www.minecraft.net/en-us/download/server" target="_blank" rel="noopener noreferrer">
+                        <div class="source-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        </div>
+                        <div class="source-card-body">
+                            <h4>Minecraft.net — Server Download</h4>
+                            <p>Official server jar downloads from Mojang. The source of truth for every vanilla release.</p>
+                        </div>
+                    </a>
+                    <a class="source-card" href="https://help.minecraft.net/hc/en-us" target="_blank" rel="noopener noreferrer">
+                        <div class="source-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <div class="source-card-body">
+                            <h4>Minecraft Help Center</h4>
+                            <p>Official Mojang support articles for accounts, multiplayer, and troubleshooting.</p>
+                        </div>
+                    </a>
+                    <a class="source-card" href="https://discord.gg/2nmKgVfw" target="_blank" rel="noopener noreferrer">
+                        <div class="source-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div class="source-card-body">
+                            <h4>Discord Community</h4>
+                            <p>Where we coordinate, share screenshots, and argue about the best way to build a nether hub.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="mods" class="mods-section" aria-labelledby="mods-heading">
         <div class="container container--section fade-in">
             <header class="features-header">
                 <p class="section-kicker">Mod list</p>
                 <h2 id="mods-heading">What is on the server</h2>
                 <p class="section-desc section-desc--left">Fabric stack we actually run—performance, libraries, and QoL. Ask in Discord if you need the full picture for your client.</p>
+                <div class="mods-search-wrap">
+                    <input type="text" id="mods-search" class="mods-search-input" placeholder="Filter mods…" aria-label="Filter mods by name">
+                    <span class="mods-search-icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </span>
+                </div>
             </header>
             <div id="mods-root" class="mods-root" aria-live="polite"></div>
         </div>
@@ -412,13 +615,21 @@
                 if (y > 50) navbar.classList.add('scrolled');
                 else navbar.classList.remove('scrolled');
                 backToTop.classList.toggle('is-visible', y > 480);
+
+                // Scroll progress bar
+                var scrollProgress = document.getElementById('scroll-progress');
+                if (scrollProgress) {
+                    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    var pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+                    scrollProgress.style.width = pct + '%';
+                }
             }, { passive: true });
 
             backToTop.addEventListener('click', function () {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            const sections = ['home', 'about', 'features', 'mods', 'join'];
+            const sections = ['home', 'about', 'features', 'survival', 'mods', 'join'];
             const navAnchors = document.querySelectorAll('[data-nav-anchor]');
             function updateActiveNav() {
                 const mid = window.scrollY + window.innerHeight * 0.25;
@@ -627,6 +838,37 @@
                 else observer.observe(el);
             });
 
+            /* Stat counter animation */
+            (function animateStats() {
+                var counters = document.querySelectorAll('[data-count]');
+                if (!counters.length) return;
+
+                var statObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        var el = entry.target;
+                        var target = parseInt(el.getAttribute('data-count'), 10);
+                        var suffix = el.getAttribute('data-suffix') || '';
+                        var duration = 1200;
+                        var start = Date.now();
+
+                        function tick() {
+                            var elapsed = Date.now() - start;
+                            var progress = Math.min(elapsed / duration, 1);
+                            // Ease out cubic
+                            var eased = 1 - Math.pow(1 - progress, 3);
+                            var current = Math.round(eased * target);
+                            el.textContent = current + suffix;
+                            if (progress < 1) requestAnimationFrame(tick);
+                        }
+                        tick();
+                        statObserver.unobserve(el);
+                    });
+                }, { threshold: 0.5 });
+
+                counters.forEach(function (c) { statObserver.observe(c); });
+            })();
+
             function loadModList() {
                 var root = document.getElementById('mods-root');
                 if (!root) return;
@@ -749,6 +991,37 @@
             }
 
             loadModList();
+
+            /* Mod list search filter */
+            (function modSearch() {
+                var input = document.getElementById('mods-search');
+                if (!input) return;
+
+                input.addEventListener('input', function () {
+                    var query = input.value.toLowerCase().trim();
+                    var rows = document.querySelectorAll('.mod-row');
+                    var groups = document.querySelectorAll('.mods-group-title');
+
+                    rows.forEach(function (row) {
+                        var name = row.querySelector('.mod-name');
+                        if (!name) return;
+                        var match = !query || name.textContent.toLowerCase().indexOf(query) !== -1;
+                        row.style.display = match ? '' : 'none';
+                    });
+
+                    // Hide empty group titles
+                    groups.forEach(function (title) {
+                        var next = title.nextElementSibling;
+                        if (next && next.classList.contains('mods-list')) {
+                            var visibleItems = 0;
+                            for (var i = 0; i < next.children.length; i++) {
+                                if (next.children[i].style.display !== 'none') visibleItems++;
+                            }
+                            title.style.display = visibleItems === 0 ? 'none' : '';
+                        }
+                    });
+                });
+            })();
         })();
     </script>
 </body>
